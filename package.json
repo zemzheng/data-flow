@@ -1,0 +1,34 @@
+{
+  "name": "data-flow",
+  "version": "0.1.0",
+  "description": "data-flow help you to adjust data step-by-step",
+  "main": "dist/index.js",
+  "scripts": {
+    "build" : "babel src -d dist",
+    "echo" : "ls $(npm bin)",
+    "clean" : "rm dist -rf",
+    "test": "node node_modules/mocha/bin/_mocha --compilers js:babel-register --require test/setup.js --recursive ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zemzheng/data-flow.git"
+  },
+  "keywords": [
+    "data-flow",
+    "step-by-step",
+    "promise"
+  ],
+  "author": "zemzheng@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zemzheng/data-flow/issues"
+  },
+  "homepage": "https://github.com/zemzheng/data-flow#readme",
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
