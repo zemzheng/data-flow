@@ -111,7 +111,6 @@ set( '404', {}, [
             return function( what ){
                 var err = new Error( 'Flow no found ' + what.name );
                 err.data = config;
-                console.log( 'Error : flow 404', what );
                 throw err;
             }
         };
