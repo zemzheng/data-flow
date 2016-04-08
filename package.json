@@ -4,10 +4,10 @@
   "description": "data-flow help you to adjust data step-by-step",
   "main": "dist/index.js",
   "scripts": {
-    "build" : "babel src -d dist",
-    "echo" : "ls $(npm bin)",
+    "build" : "mkdir dist & node node_modules/babel-cli/bin/babel.js src/index.js -o dist/index.js",
     "clean" : "rm dist -rf",
-    "test": "node node_modules/mocha/bin/_mocha --compilers js:babel-register --require test/setup.js --recursive ./test"
+    "test": "node node_modules/mocha/bin/_mocha --compilers js:babel-register --require test/setup.js --recursive ./test",
+    "prepublish" : "npm test && npm clean && npm build"
   },
   "repository": {
     "type": "git",

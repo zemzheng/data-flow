@@ -1,6 +1,6 @@
 # data-flow
 
-[![Build Status](https://travis-ci.org/zemzheng/data-flow.svg?branch=master)](https://github.com/zemzheng/data-flow)
+[![Build Status](https://travis-ci.org/zemzheng/data-flow.svg?branch=master)](https://travis-ci.org/zemzheng/data-flow)
 
 ## install
 

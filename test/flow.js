@@ -92,10 +92,5 @@ describe( 'duz/tool/flow', function(){
         flow.start( 'flow-2', mark );
     } );
 
-    it( 'wrap func', function(){
-        flow.wrap( function(){} ).shouldRun.should.equal( true );
-    } );
-
-
 } );
 

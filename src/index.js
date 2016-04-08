@@ -5,7 +5,12 @@
 
 let DATA = {};
 
+export function clear(){
+    DATA = { "404" : get( "404" ) };
+}
+
 export function get( name ){
+    if( name instanceof Array ) return parseInput({ list : name, config : {} });
     return DATA[ name ];
 }
 
@@ -18,34 +23,27 @@ export function wrap( func ){
     return func;
 }
 
-
-export function set( name, config, list, update = false ){
-
-    if( !name || 'string' !== typeof name ) return -1;
-    if( get( name ) && !update ) return -2;
-
-    function parseInput( item, index ){
+function parseInput({ config, list }){
+    function adjustInput( item, index ){
         let result;
         switch( true ){
             case 'function' === typeof item:
                 if( item.shouldRun ){
                     // builder
-                    result = parseInput( item( config ), index );
+                    result = adjustInput( item( config ), index );
                 } else {
                     // then
-                    let _catch = item.catch;
-                    delete item.catch;
                     result = {
                         then  : item,
-                        catch : _catch,
+                        catch : item.catch,
                     }
                 }
                 break;
-            case 'function' === typeof item.then
-                || 'function' === typeof item.catch:
+            case item && 'function' === typeof item.then:
+            case item && 'function' === typeof item.catch:
                 result = {
-                    then  : item.then,
-                    catch : item.catch,
+                    then  : 'function' === typeof item.then  && item.then  ,
+                    catch : 'function' === typeof item.catch && item.catch ,
                 };
                 break;
         }
@@ -68,9 +66,13 @@ export function set( name, config, list, update = false ){
         return result;
     };
 
-    list = ( list || [] ).map( parseInput ).filter( x => x ).map( wrapMethods );
+    return ( list || [] ).map( adjustInput ).filter( x => x ).map( wrapMethods );
+}
 
-    DATA[ name ] = { config, list }
+export function set( name, config, list, update = false ){
+    if( !name || 'string' !== typeof name ) return -1;
+    if( get( name ) && !update ) return -2;
+    DATA[ name ] = { config, list : parseInput({ config, list }) }
     return 0;
 }
 
@@ -124,4 +126,5 @@ flow.get   = get;
 flow.set   = set;
 flow.list  = list;
 flow.wrap  = wrap;
+flow.clear = clear;
 
