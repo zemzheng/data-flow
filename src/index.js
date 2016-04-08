@@ -10,8 +10,16 @@ export function clear(){
 }
 
 export function get( name ){
-    if( name instanceof Array ) return parseInput({ list : name, config : {} });
-    return DATA[ name ];
+    switch( true ){
+        case name instanceof Array:
+            return {
+                list : parseInput({ list : name, config : {} })
+            }
+        case 'string' === typeof name:
+            return DATA[ name ];
+        default:
+            return name;
+    }
 }
 
 export function list(){

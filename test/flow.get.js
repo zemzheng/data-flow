@@ -1,6 +1,6 @@
 import flow, { get, set, clear } from "../src";
 
-describe( 'duz/tool/flow.get', function(){
+describe( __filename, function(){
     it( 'import', function(){
         clear();
         flow.get.should.equal( get );

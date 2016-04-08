@@ -1,6 +1,6 @@
 import flow, { wrap } from "../src";
 
-describe( 'duz/tool/flow.wrap', function(){
+describe( __filename, function(){
     it( 'import', function(){
         flow.wrap.should.equal( wrap );
     } );

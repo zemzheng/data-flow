@@ -1,6 +1,6 @@
 import flow from "../src";
 
-describe( 'duz/tool/flow', function(){
+describe( __filename, function(){
     it( '404', function( done ){
         flow.start( 'unknow-api', {} )
             .catch( function( err ){
